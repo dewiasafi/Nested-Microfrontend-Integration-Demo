@@ -1,0 +1,23 @@
+{
+  "name": "nested-microfrontend-demo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Nested microfrontend demo: Parent -> MFE A -> MFE B",
+  "engines": {
+    "node": "16.x"
+  },
+  "scripts": {
+    "install:all": "npm install && npm install --prefix apps/parent-app && npm install --prefix apps/mfe-a && npm install --prefix apps/mfe-b",
+    "dev": "concurrently -n parent,mfe-a,mfe-b -c blue,green,magenta \"npm run dev:parent\" \"npm run dev:mfe-a\" \"npm run dev:mfe-b\"",
+    "dev:parent": "npm start --prefix apps/parent-app",
+    "dev:mfe-a": "npm start --prefix apps/mfe-a",
+    "dev:mfe-b": "npm start --prefix apps/mfe-b",
+    "build": "npm run build:parent && npm run build:mfe-a && npm run build:mfe-b",
+    "build:parent": "npm run build --prefix apps/parent-app",
+    "build:mfe-a": "npm run build --prefix apps/mfe-a",
+    "build:mfe-b": "npm run build --prefix apps/mfe-b"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
