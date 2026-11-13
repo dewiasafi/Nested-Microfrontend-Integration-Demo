@@ -124,7 +124,7 @@ npm run build
 ## Disclaimer
 
 - This is an independent technical demonstration.
-- The architectural idea is inspired by a real-world case from my professional work environment; everything else in this repository is original and fictional.
+- The architectural idea is inspired by a real-world case from my experience; everything else in this repository is original and fictional.
 - The project is independently implemented from scratch, and all source code is newly written.
 - Application names, routes, configuration, and mock data are fictional.
 - No proprietary company source code, private data, credentials, endpoints, assets, or internal infrastructure are included.
