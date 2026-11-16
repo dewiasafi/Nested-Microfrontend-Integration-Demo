@@ -1,16 +1,41 @@
 import React from 'react';
-import {Button} from 'antd';
-import 'antd/dist/antd.css';
+import { Alert, Menu } from 'antd';
+import { getRouteMetadata, resolveRoute } from './routes';
 
-const APP_NAME = 'MFE B - Customer Module';
-const APP_PORT = '5003';
+export default function App({ pathname, onNavigate }) {
+  const route = resolveRoute(pathname);
 
-export default function App() {
+  if (!route) {
+    return (
+      <Alert
+        type="error"
+        showIcon
+        message="Unknown customer route"
+        description={`Path "${pathname}" is not supported by MFE B.`}
+      />
+    );
+  }
+
+  const Page = route.component;
+  const routes = getRouteMetadata();
+
   return (
-    <div style={{ padding: 32, fontFamily: 'sans-serif' }}>
-      <h1>{APP_NAME}</h1>
-      <p>Running independently on port {APP_PORT}.</p>
-      <Button type="primary">Ant Design v3 loaded</Button>
+    <div className="mfe-b-root">
+      <Menu
+        mode="horizontal"
+        selectedKeys={[route.id]}
+        onClick={({ key }) => {
+          const next = routes.find((r) => r.id === key);
+          if (next && onNavigate) onNavigate(next.pathname);
+        }}
+      >
+        {routes.map((r) => (
+          <Menu.Item key={r.id}>{r.label}</Menu.Item>
+        ))}
+      </Menu>
+      <div className="mfe-b-content">
+        <Page />
+      </div>
     </div>
   );
 }

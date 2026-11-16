@@ -1,0 +1,6 @@
+.mfe-a-layout { min-height: 480px; background: #fff; border: 1px solid #f0f0f0; }
+.mfe-a-sider { border-right: 1px solid #f0f0f0; }
+.mfe-a-title { padding: 16px 24px 8px; font-weight: 600; color: #1890ff; }
+.mfe-a-content { padding: 24px; background: #fafafa; }
+.mfe-a-nested-container { min-height: 200px; border: 1px dashed #d9d9d9; background: #fff; }
+.mfe-a-standalone-banner { padding: 6px 16px; background: #fffbe6; border-bottom: 1px solid #ffe58f; font-size: 12px; }
