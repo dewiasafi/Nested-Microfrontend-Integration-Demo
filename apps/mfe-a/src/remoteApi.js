@@ -21,7 +21,6 @@ function render(containerId, props = {}) {
   const el = document.getElementById(containerId);
   if (!el) throw new Error(`[MfeA] Container "${containerId}" not found`);
 
-  // Container node replaced, or host handed over a different history: rebuild the tree.
   const existing = instances.get(containerId);
   if (existing && (existing.el !== el || (props.history && existing.history !== props.history))) {
     unmount(containerId);
@@ -39,7 +38,13 @@ function render(containerId, props = {}) {
   return true;
 }
 
+function getRoutes() {
+  return [
+    { id: 'workspace', label: 'Workspace', pathname: DEFAULT_BASE_PATH, prefix: true },
+  ];
+}
+
 export function registerRemoteApi() {
   window.NestedMfeDemo = window.NestedMfeDemo || {};
-  window.NestedMfeDemo.MfeA = { render, unmount };
+  window.NestedMfeDemo.MfeA = { getRoutes, render, unmount };
 }
